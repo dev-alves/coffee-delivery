@@ -76,6 +76,12 @@ export const defaultTheme = {
     lineHeight: '130%',
     weight: '400',
   },
+  'text-s-bold': {
+    font: 'Roboto',
+    size: '0.75rem',
+    lineHeight: '130%',
+    weight: 'bold',
+  },
   'text-xs-bold': {
     font: 'Roboto',
     size: '0.75rem',
