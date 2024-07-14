@@ -9,6 +9,7 @@ export const BaseCartButton = styled.button`
   border: none;
   border-radius: 6px;
   transition: 0.3s;
+  cursor: pointer;
 `
 
 export const Button = styled(BaseCartButton)`
