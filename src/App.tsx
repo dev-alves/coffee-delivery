@@ -6,14 +6,22 @@ import { ButtonRemove } from './styles/components/Remove'
 import { ButtonCart } from './styles/components/Cart'
 import { ButtonType } from './styles/components/Cart/types'
 import { Select } from './styles/components/Select'
+import { InputText } from './styles/components/InputText'
+import { InputNumber } from './styles/components/InputNumber'
 
 function App() {
+  function setSelect(value: boolean) {
+    console.log('>> selecionou', value)
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <ButtonPrimary text="Label" />
       <ButtonRemove text="Remover" />
       <ButtonCart type={ButtonType.FULL} amountValue={2} />
-      <Select text="Cartão de crédito" />
+      <Select text="Cartão de crédito" setSelectedItem={setSelect} />
+      <InputText />
+      <InputNumber />
       <GlobalStyle />
     </ThemeProvider>
   )

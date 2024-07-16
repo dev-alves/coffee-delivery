@@ -1,22 +1,30 @@
 import { CreditCard } from 'phosphor-react'
 import { SelectDefault } from './styles'
-import { useState } from 'react'
+import { MouseEvent } from 'react'
 
 interface SelectProps {
   upperCase?: boolean
+  isSelect?: boolean
+  setSelectedItem: (value: boolean) => void
   text: string
 }
 
-export function Select({ upperCase = true, text }: SelectProps) {
-  const [selected, setSelect] = useState(false)
-
-  function handleClick() {
+export function Select({
+  upperCase = true,
+  text,
+  setSelectedItem,
+  isSelect = false,
+}: SelectProps) {
+  function handleClick(event: MouseEvent) {
     event.preventDefault()
-    setSelect(true)
+    setSelectedItem(true)
   }
 
   return (
-    <SelectDefault onClick={handleClick} selected={selected}>
+    <SelectDefault
+      onClick={(event: MouseEvent) => handleClick(event)}
+      selected={isSelect}
+    >
       <CreditCard size={22} /> {upperCase ? text.toUpperCase() : text}
     </SelectDefault>
   )
