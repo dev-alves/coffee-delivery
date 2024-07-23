@@ -1,4 +1,4 @@
-import { Button } from './styles'
+import { Container } from './styles'
 
 interface ButtonPrimaryProps {
   text: string
@@ -6,5 +6,5 @@ interface ButtonPrimaryProps {
 }
 
 export function ButtonPrimary({ text, upperCase = true }: ButtonPrimaryProps) {
-  return <Button>{upperCase ? text.toUpperCase() : text}</Button>
+  return <Container>{upperCase ? text.toUpperCase() : text}</Container>
 }

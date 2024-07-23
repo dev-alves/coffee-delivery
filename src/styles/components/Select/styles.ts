@@ -20,8 +20,11 @@ export const BaseSelect = styled.button<StyleProps>`
   font-weight: ${(props) => props.theme['button-m-regular'].weight};
   transition: 0.3s;
 
+  span {
+    padding-left: 0.75rem;
+  }
+
   svg {
-    margin-right: 0.75rem;
     color: ${(props) => props.theme.purple};
   }
 
@@ -34,4 +37,4 @@ export const BaseSelect = styled.button<StyleProps>`
   }
 `
 
-export const SelectDefault = styled(BaseSelect)``
+export const Container = styled(BaseSelect)``

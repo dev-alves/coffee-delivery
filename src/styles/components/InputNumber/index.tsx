@@ -1,5 +1,5 @@
 import { Minus, Plus } from 'phosphor-react'
-import { InputContainer, Input } from './styles'
+import { Container, Input } from './styles'
 import { ChangeEvent, useState } from 'react'
 
 export function InputNumber() {
@@ -17,7 +17,7 @@ export function InputNumber() {
   }
 
   return (
-    <InputContainer>
+    <Container>
       <Minus weight="bold" onClick={handleMinusAction} />
       <Input
         onChange={(event: ChangeEvent<HTMLInputElement>) => handleChange(event)}
@@ -25,6 +25,6 @@ export function InputNumber() {
         maxLength={2}
       />
       <Plus weight="bold" onClick={handlePlusAction} />
-    </InputContainer>
+    </Container>
   )
 }

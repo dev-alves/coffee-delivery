@@ -30,12 +30,12 @@ export const ButtonPlus = styled.button`
   }
 `
 
-export const InputContainer = styled(BaseInputContainer)``
+export const Container = styled(BaseInputContainer)``
 
 export const Input = styled.input`
   text-align: center;
-  margin-left: 4px;
-  margin-right: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
   width: 1.25rem;
   height: 1.25rem;
   border: none;

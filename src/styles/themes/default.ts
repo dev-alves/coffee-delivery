@@ -21,27 +21,29 @@ export const defaultTheme = {
 
   // fonts style
   'text-title-xl': {
-    size: '3 rem',
+    size: '3rem',
     lineHeight: '130%',
     weight: 'bolder',
   },
   'text-title-l': {
-    size: '2 rem',
+    size: '2rem',
     lineHeight: '130%',
     weight: 'bolder',
   },
   'text-title-m': {
-    size: '1.5 rem',
+    font: 'Baloo 2',
+    size: '1.5rem',
     lineHeight: '130%',
     weight: 'bolder',
   },
   'text-title-s': {
-    size: '1.25 rem',
+    font: 'Baloo 2',
+    size: '1.25rem',
     lineHeight: '130%',
     weight: 'bold',
   },
   'text-title-xs': {
-    size: '1.125 rem',
+    size: '1.125rem',
     lineHeight: '130%',
     weight: 'bold',
   },

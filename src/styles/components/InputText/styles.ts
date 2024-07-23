@@ -24,4 +24,4 @@ const BaseInputText = styled.input`
   }
 `
 
-export const Input = styled(BaseInputText)``
+export const Container = styled(BaseInputText)``

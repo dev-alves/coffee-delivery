@@ -12,7 +12,7 @@ export const BaseLabelButton = styled.button`
   cursor: pointer;
 `
 
-export const Button = styled(BaseLabelButton)`
+export const Container = styled(BaseLabelButton)`
   size: ${(props) => props.theme['button-g-bold'].size};
   line-height: ${(props) => props.theme['button-g-bold'].lineHeight};
   color: ${(props) => props.theme['base-white']};

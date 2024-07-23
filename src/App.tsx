@@ -8,6 +8,8 @@ import { ButtonType } from './styles/components/Cart/types'
 import { Select } from './styles/components/Select'
 import { InputText } from './styles/components/InputText'
 import { InputNumber } from './styles/components/InputNumber'
+import { Catalog } from './styles/components/Catalog/indext'
+import imageTest from './assets/Image-1.svg'
 
 function App() {
   function setSelect(value: boolean) {
@@ -22,6 +24,13 @@ function App() {
       <Select text="Cartão de crédito" setSelectedItem={setSelect} />
       <InputText />
       <InputNumber />
+      <Catalog
+        img={imageTest}
+        type="TRADICIONAL"
+        name="Expresso Tradicional"
+        description="O tradicional café feito com água quente e grãos moídos"
+        alt="Imagem do café tradicional"
+      />
       <GlobalStyle />
     </ThemeProvider>
   )

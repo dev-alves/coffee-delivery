@@ -1,5 +1,5 @@
 import { CreditCard } from 'phosphor-react'
-import { SelectDefault } from './styles'
+import { Container } from './styles'
 import { MouseEvent } from 'react'
 
 interface SelectProps {
@@ -21,11 +21,12 @@ export function Select({
   }
 
   return (
-    <SelectDefault
+    <Container
       onClick={(event: MouseEvent) => handleClick(event)}
       selected={isSelect}
     >
-      <CreditCard size={22} /> {upperCase ? text.toUpperCase() : text}
-    </SelectDefault>
+      <CreditCard size={22} />{' '}
+      <span>{upperCase ? text.toUpperCase() : text}</span>
+    </Container>
   )
 }
