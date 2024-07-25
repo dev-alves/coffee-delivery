@@ -4,7 +4,7 @@ import { ButtonType } from './types'
 
 interface ButtonCartProps {
   type: ButtonType
-  amountValue: number
+  amountValue?: number
 }
 
 export function ButtonCart({ type, amountValue }: ButtonCartProps) {
@@ -20,9 +20,11 @@ export function ButtonCart({ type, amountValue }: ButtonCartProps) {
     case ButtonType.FULL: {
       return (
         <ButtonFull>
-          <div>
-            <span>{amountValue}</span>
-          </div>
+          {amountValue && (
+            <div>
+              <span>{amountValue}</span>
+            </div>
+          )}
           <ShoppingCartSimple size={22} />
         </ButtonFull>
       )
