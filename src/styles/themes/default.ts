@@ -21,6 +21,7 @@ export const defaultTheme = {
 
   // fonts style
   'text-title-xl': {
+    font: 'Baloo 2',
     size: '3rem',
     lineHeight: '130%',
     weight: 'bolder',
