@@ -27,6 +27,7 @@ export const defaultTheme = {
     weight: 'bolder',
   },
   'text-title-l': {
+    font: 'Baloo 2',
     size: '2rem',
     lineHeight: '130%',
     weight: 'bolder',

@@ -13,6 +13,8 @@ const BaseCatalogComponent = styled.div`
   header {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     position: relative;
     padding-bottom: 16px;
 
@@ -21,17 +23,24 @@ const BaseCatalogComponent = styled.div`
       top: -14px;
     }
 
-    span {
+    div {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 8px 4px;
-      border-radius: 100px;
-      background: ${(props) => props.theme['yellow-light']};
-      font-family: ${(props) => props.theme['tag-bold'].font};
-      font-size: ${(props) => props.theme['tag-bold'].size};
-      font-weight: ${(props) => props.theme['tag-bold'].weight};
-      color: ${(props) => props.theme['yellow-dark']};
+
+      span {
+        padding: 4px 8px;
+        border-radius: 100px;
+        background: ${(props) => props.theme['yellow-light']};
+        font-family: ${(props) => props.theme['tag-bold'].font};
+        font-size: ${(props) => props.theme['tag-bold'].size};
+        font-weight: ${(props) => props.theme['tag-bold'].weight};
+        color: ${(props) => props.theme['yellow-dark']};
+      }
+
+      span:not(:last-of-type) {
+        margin-right: 4px;
+      }
     }
   }
 
@@ -40,7 +49,7 @@ const BaseCatalogComponent = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-bottom: 33px;
+    padding-bottom: 45px;
 
     span {
       font-family: '${(props) => props.theme['text-title-s'].font}', sans-serif;

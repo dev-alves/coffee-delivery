@@ -6,7 +6,7 @@ import { Container } from './styles'
 interface CatalogProperties {
   img: string
   alt: string
-  type: string
+  types: string[]
   name: string
   description: string
 }
@@ -14,7 +14,7 @@ interface CatalogProperties {
 export function Catalog({
   img,
   alt,
-  type,
+  types,
   name,
   description,
 }: CatalogProperties) {
@@ -26,10 +26,18 @@ export function Catalog({
     <Container>
       <header>
         <img src={img} alt={alt} />
-        <span>{type}</span>
+        {types.length > 0 && (
+          <div>
+            {types.map((type) => (
+              <span key={type}>{type}</span>
+            ))}
+          </div>
+        )}
       </header>
       <main>
-        <span>{name}</span>
+        <div>
+          <span>{name}</span>
+        </div>
         <p>{description}</p>
       </main>
       <footer>

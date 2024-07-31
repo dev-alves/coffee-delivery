@@ -10,10 +10,21 @@ const SectionItemsBase = styled.div`
 `
 
 export const Container = styled.main`
+  h1 {
+    display: inline-block;
+    font-family: '${(props) => props.theme['text-title-l'].font}', sans-serif;
+    size: ${(props) => props.theme['text-title-l'].size};
+    font-weight: ${(props) => props.theme['text-title-l'].weight};
+    line-height: ${(props) => props.theme['text-title-l'].lineHeight};
+    margin-bottom: 3.375rem;
+  }
+`
+
+export const InfoContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
-  margin-top: 3.625rem;
+  margin: 3.625rem 0rem 3.625rem 0rem;
 
   h1 {
     color: ${(props) => props.theme['base-title']};
@@ -135,4 +146,11 @@ export const CoffeContainer = styled(SectionItemsBase)`
     }
   }
   align-items: center;
+`
+
+export const CartContainer = styled.section`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  row-gap: 2.5rem;
 `

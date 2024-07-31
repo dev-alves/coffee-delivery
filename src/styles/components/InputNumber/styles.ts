@@ -34,8 +34,6 @@ export const Container = styled(BaseInputContainer)``
 
 export const Input = styled.input`
   text-align: center;
-  padding-left: 4px;
-  padding-right: 4px;
   width: 1.25rem;
   height: 1.25rem;
   border: none;
