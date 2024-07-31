@@ -13,7 +13,8 @@ export function InputNumber() {
   }
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setValue(Number(event.target.value))
+    const value = Number(event.target.value)
+    setValue(value >= 0 ? value : 0)
   }
 
   return (
