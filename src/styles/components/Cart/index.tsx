@@ -20,11 +20,9 @@ export function ButtonCart({ type, amountValue }: ButtonCartProps) {
     case ButtonType.FULL: {
       return (
         <ButtonFull>
-          {amountValue && (
-            <div>
-              <span>{amountValue}</span>
-            </div>
-          )}
+          <div>
+            <span>{amountValue}</span>
+          </div>
           <ShoppingCartSimple size={22} />
         </ButtonFull>
       )

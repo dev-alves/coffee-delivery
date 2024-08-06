@@ -149,8 +149,10 @@ export const CoffeContainer = styled(SectionItemsBase)`
 `
 
 export const CartContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  row-gap: 2.5rem;
+  form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    row-gap: 2.5rem;
+  }
 `
