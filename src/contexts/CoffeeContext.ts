@@ -1,8 +1,17 @@
 import { createContext } from 'react'
 
-export interface CoffeDataTypes {
+export interface Coffe {
+  id: number
+  img: string
+  alt: string
+  types: string[]
+  name: string
+  description: string
   amount: number
-  setAmountCoffes: (ammount: number) => void
+}
+export interface CoffeDataTypes {
+  coffes: Coffe[]
+  setNewCoffe: (coffes: Coffe) => void
 }
 
 export const CoffeContext = createContext({} as CoffeDataTypes)

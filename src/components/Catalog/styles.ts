@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const BaseCatalogComponent = styled.div`
   width: 16rem;
-  height: 19.375rem;
+  height: 18.375rem;
   background: ${(props) => props.theme['base-card']};
   border-top-right-radius: 36px;
   border-bottom-left-radius: 37px;
@@ -49,7 +49,7 @@ const BaseCatalogComponent = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding-bottom: 45px;
+    padding-bottom: 35px;
 
     span {
       font-family: '${(props) => props.theme['text-title-s'].font}', sans-serif;
@@ -72,7 +72,7 @@ const BaseCatalogComponent = styled.div`
 
   footer {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     width: 208px;
 
@@ -81,6 +81,7 @@ const BaseCatalogComponent = styled.div`
       font-size: ${(props) => props.theme['text-title-m'].size};
       font-weight: ${(props) => props.theme['text-title-m'].weight};
       color: ${(props) => props.theme['base-text']};
+      padding-right: 20px;
     }
 
     span:before {
@@ -99,8 +100,8 @@ const BaseInputContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 4.5rem;
-  height: 2rem;
-  padding: 0.5rem;
+  height: 38px;
+  padding: 0.9rem;
   background: ${(props) => props.theme['base-button']};
   border-radius: 6px;
 
@@ -137,4 +138,61 @@ export const Input = styled.input`
   line-height: ${(props) => props.theme['text-m-regular'].lineHeight};
   font-weight: ${(props) => props.theme['text-m-regular'].weight};
   font-size: ${(props) => props.theme['text-m-regular'].size};
+`
+
+export const BaseCartButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.375rem;
+  height: 2.375rem;
+  border: none;
+  border-radius: 6px;
+  transition: 0.3s;
+  cursor: pointer;
+`
+
+export const Button = styled(BaseCartButton)`
+  background: ${(props) => props.theme['purple-dark']};
+  svg {
+    color: ${(props) => props.theme['base-card']};
+  }
+
+  svg path {
+    fill: ${(props) => props.theme['base-card']};
+  }
+
+  &:hover {
+    background: ${(props) => props.theme.purple};
+  }
+`
+
+export const ButtonFull = styled(BaseCartButton)`
+  position: relative;
+  background: ${(props) => props.theme['yellow-light']};
+
+  svg {
+    color: ${(props) => props.theme['yellow-dark']};
+  }
+
+  svg path {
+    fill: ${(props) => props.theme['yellow-dark']};
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 100%;
+    background: ${(props) => props.theme['yellow-dark']};
+    top: -5px;
+    right: -5px;
+    font-size: ${(props) => props.theme['text-s-bold'].size};
+    line-height: ${(props) => props.theme['text-s-bold'].lineHeight};
+    font-weight: ${(props) => props.theme['text-s-bold'].weight};
+    color: ${(props) => props.theme['base-white']};
+  }
 `

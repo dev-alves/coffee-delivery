@@ -3,20 +3,22 @@ import { defaultTheme } from './styles/themes/default'
 import { GlobalStyle } from './styles/global'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './Router'
-import { CoffeContext } from './contexts/CoffeeContext'
+import { Coffe, CoffeContext } from './contexts/CoffeeContext'
 import { useState } from 'react'
 
 function App() {
-  const [amount, setAmount] = useState(0)
+  const [coffes, setCoffe] = useState<Coffe[]>([])
 
-  function setAmountCoffes(value: number) {
-    setAmount(value)
+  function setNewCoffe(coffe: Coffe) {
+    setCoffe([...coffes, coffe])
   }
+
+  console.log(coffes)
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CoffeContext.Provider value={{ amount, setAmountCoffes }}>
+        <CoffeContext.Provider value={{ coffes, setNewCoffe }}>
           <Router />
         </CoffeContext.Provider>
       </BrowserRouter>

@@ -8,7 +8,7 @@ import {
   Container,
 } from './styles'
 import { Coffee, Package, ShoppingCartSimple, Timer } from 'phosphor-react'
-import { Catalog } from '../../styles/components/Catalog/indext'
+import { Catalog } from '../../components/Catalog/indext'
 
 import CoffeLogoMain from '../../assets/coffe-logo-main.svg'
 import ExpressoTradicionalImg from '../../assets/expresso-tradicional.svg'
@@ -19,8 +19,6 @@ import CafeComLeiteImg from '../../assets/cafe-com-leite.svg'
 import CapuccinoImg from '../../assets/capuccino.svg'
 import LatteImg from '../../assets/latte.svg'
 import MacchiatoImg from '../../assets/macchiato.svg'
-
-import { FormProvider, useForm } from 'react-hook-form'
 
 const api = [
   {
@@ -93,13 +91,6 @@ const api = [
 ]
 
 export function Home() {
-  const newCoffeForm = useForm()
-  const { handleSubmit } = newCoffeForm
-
-  function handleCoffeForm(data) {
-    console.log(data)
-  }
-
   return (
     <Container>
       <InfoContainer>
@@ -144,21 +135,17 @@ export function Home() {
       </InfoContainer>
       <h1>Nosso café</h1>
       <CartContainer>
-        <FormProvider {...newCoffeForm}>
-          <form onSubmit={handleSubmit(handleCoffeForm)}>
-            {api.map((data) => (
-              <Catalog
-                key={data.id}
-                id={data.id}
-                img={data.img}
-                alt={data.alt}
-                types={data.types}
-                name={data.name}
-                description={data.description}
-              />
-            ))}
-          </form>
-        </FormProvider>
+        {api.map((data) => (
+          <Catalog
+            key={data.id}
+            id={data.id}
+            img={data.img}
+            alt={data.alt}
+            types={data.types}
+            name={data.name}
+            description={data.description}
+          />
+        ))}
       </CartContainer>
     </Container>
   )

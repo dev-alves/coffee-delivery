@@ -1,15 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import CoffeDeliveryLogo from '../../assets/coffe-delivery.svg'
 import { Container } from './styles'
-import { ButtonCart } from '../../styles/components/Cart'
-import { ButtonType } from '../../styles/components/Cart/types'
-import { MapPin } from 'phosphor-react'
-import { useContext } from 'react'
-import { CoffeContext } from '../../contexts/CoffeeContext'
+import { MapPin, ShoppingCartSimple } from 'phosphor-react'
+import { ButtonFull } from '../Catalog/styles'
 
 export function Header() {
-  const { amount } = useContext(CoffeContext)
-
   return (
     <Container>
       <img src={CoffeDeliveryLogo} alt="" />
@@ -18,7 +13,12 @@ export function Header() {
           <MapPin size={22} /> <span>Manaus, Amazonas</span>
         </NavLink>
         <NavLink to="/teste" title="carrinho de compras">
-          <ButtonCart type={ButtonType.FULL} amountValue={amount} />
+          <ButtonFull>
+            <div>
+              <span>{0}</span>
+            </div>
+            <ShoppingCartSimple size={22} />
+          </ButtonFull>
         </NavLink>
       </nav>
     </Container>
