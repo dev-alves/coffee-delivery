@@ -13,8 +13,6 @@ function App() {
     setCoffe([...coffes, coffe])
   }
 
-  console.log(coffes)
-
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>

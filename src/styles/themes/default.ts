@@ -45,11 +45,11 @@ export const defaultTheme = {
     weight: 'bold',
   },
   'text-title-xs': {
+    font: 'Baloo 2',
     size: '1.125rem',
     lineHeight: '130%',
     weight: 'bold',
   },
-
   'text-l-regular': {
     font: 'Roboto',
     size: '1.25rem',

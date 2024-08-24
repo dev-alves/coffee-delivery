@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const BaseInputText = styled.input`
-  width: 27.127rem;
+  width: ${(props) => Number(props.size) / 16}rem;
   height: 2.625rem;
   padding: 0.75rem;
   border: none;
@@ -24,4 +24,4 @@ const BaseInputText = styled.input`
   }
 `
 
-export const Container = styled(BaseInputText)``
+export const Input = styled(BaseInputText)``
