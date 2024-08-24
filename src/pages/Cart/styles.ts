@@ -18,44 +18,39 @@ export const Container = styled.div`
 export const AddressContainer = styled.div`
   background-color: ${(props) => props.theme['base-card']};
   padding: 2.5rem;
-`
+  header {
+    display: flex;
+    svg {
+      margin-right: 0.5rem;
+      color: ${(props) => props.theme['yellow-dark']};
+    }
+    span {
+      font-family: '${(props) => props.theme['text-m-regular'].font}',
+        sans-serif;
+      font-size: ${(props) => props.theme['text-m-regular'].size};
+      font-weight: ${(props) => props.theme['text-m-regular'].weight};
+      line-height: ${(props) => props.theme['text-m-regular'].lineHeight};
+      color: ${(props) => props.theme['base-subtitle']};
+    }
 
-export const Address = styled.div`
-  display: flex;
-
-  div:first-of-type {
-    margin-right: 0.5rem;
-  }
-
-  div:nth-child(2) {
+    p {
+      font-family: '${(props) => props.theme['text-s-regular'].font}',
+        sans-serif;
+      font-size: ${(props) => props.theme['text-s-regular'].size};
+      font-weight: ${(props) => props.theme['text-s-regular'].weight};
+      line-height: ${(props) => props.theme['text-s-regular'].lineHeight};
+      color: ${(props) => props.theme['base-text']};
+    }
     margin-bottom: 2rem;
-  }
-
-  svg {
-    color: ${(props) => props.theme['yellow-dark']};
-  }
-
-  span {
-    font-family: '${(props) => props.theme['text-m-regular'].font}', sans-serif;
-    font-size: ${(props) => props.theme['text-m-regular'].size};
-    font-weight: ${(props) => props.theme['text-m-regular'].weight};
-    line-height: ${(props) => props.theme['text-m-regular'].lineHeight};
-    color: ${(props) => props.theme['base-subtitle']};
-  }
-
-  p {
-    font-family: '${(props) => props.theme['text-s-regular'].font}', sans-serif;
-    font-size: ${(props) => props.theme['text-s-regular'].size};
-    font-weight: ${(props) => props.theme['text-s-regular'].weight};
-    line-height: ${(props) => props.theme['text-s-regular'].lineHeight};
-    color: ${(props) => props.theme['base-text']};
   }
 `
 
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
+`
 
+export const AddressInputsContainer = styled.div`
   div:not(:last-child) {
     margin-bottom: 1rem;
   }
