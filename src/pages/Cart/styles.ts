@@ -5,7 +5,7 @@ export const Container = styled.div`
   width: 40rem;
   height: 39.3215rem;
 
-  h1 {
+  & > h1 {
     font-family: '${(props) => props.theme['text-title-xs'].font}', sans-serif;
     font-size: ${(props) => props.theme['text-title-xs'].size};
     font-weight: ${(props) => props.theme['text-title-xs'].weight};
@@ -15,7 +15,7 @@ export const Container = styled.div`
   }
 `
 
-export const AddressContainer = styled.div`
+const BaseFormInfoContainer = styled.div`
   background-color: ${(props) => props.theme['base-card']};
   padding: 2.5rem;
   header {
@@ -24,7 +24,7 @@ export const AddressContainer = styled.div`
       margin-right: 0.5rem;
       color: ${(props) => props.theme['yellow-dark']};
     }
-    span {
+    h1 {
       font-family: '${(props) => props.theme['text-m-regular'].font}',
         sans-serif;
       font-size: ${(props) => props.theme['text-m-regular'].size};
@@ -45,6 +45,12 @@ export const AddressContainer = styled.div`
   }
 `
 
+export const FormInfoAddressContainer = styled(BaseFormInfoContainer)``
+
+export const FormInfoPaymentContainer = styled(BaseFormInfoContainer)`
+  margin-top: 0.75rem;
+`
+
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -60,6 +66,13 @@ export const AddressInputsContainer = styled.div`
   }
 
   div input:not(:last-child):not(:first-child) {
+    margin: 0 0.75rem;
+  }
+`
+
+export const PaymentInfoContainer = styled.div`
+  display: flex;
+  div:nth-child(2) > button:nth-child(1) {
     margin: 0 0.75rem;
   }
 `
