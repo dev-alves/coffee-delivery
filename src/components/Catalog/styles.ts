@@ -81,7 +81,7 @@ const BaseCatalogComponent = styled.div`
       font-size: ${(props) => props.theme['text-title-m'].size};
       font-weight: ${(props) => props.theme['text-title-m'].weight};
       color: ${(props) => props.theme['base-text']};
-      padding-right: 20px;
+      padding-right: 15px;
     }
 
     span:before {
@@ -99,7 +99,7 @@ const BaseInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 4.5rem;
+  margin-right: 8px;
   height: 38px;
   padding: 0.9rem;
   background: ${(props) => props.theme['base-button']};
