@@ -78,12 +78,12 @@ export const AddressInputsContainer = styled.div`
 
 export const PaymentInfoContainer = styled.div`
   display: flex;
-  div:nth-child(2) > button:nth-child(1) {
+  button:nth-child(even) {
     margin: 0 0.75rem;
   }
 `
 
-export const DetailsOrderContainer = styled(FormContainer)`
+export const DetailsOrderContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 448px;
@@ -186,5 +186,14 @@ export const CoffeValueContainer = styled.div`
     font-size: ${(props) => props.theme['text-m-bold'].size};
     font-weight: ${(props) => props.theme['text-m-bold'].weight};
     color: ${(props) => props.theme['base-text']};
+  }
+`
+
+export const FooterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  &:first-child {
+    flex-direction: column;
   }
 `

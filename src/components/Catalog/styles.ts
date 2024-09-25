@@ -74,7 +74,6 @@ const BaseCatalogComponent = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    width: 208px;
 
     span {
       font-family: '${(props) => props.theme['text-title-m'].font}', sans-serif;

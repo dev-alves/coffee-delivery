@@ -28,6 +28,7 @@ const api = [
     types: ['Tradicional'],
     name: 'Expresso Tradicional',
     description: 'O tradicional café feito com água quente e grãos moídos',
+    price: 10.5,
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ const api = [
     types: ['Tradicional'],
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
+    price: 20.6,
   },
   {
     id: 3,
@@ -44,6 +46,7 @@ const api = [
     types: ['Tradicional'],
     name: 'Expresso cremoso',
     description: 'Café expresso tradicional com espuma cremosa',
+    price: 8.99,
   },
   {
     id: 4,
@@ -52,6 +55,7 @@ const api = [
     types: ['Tradicional', 'Gelado'],
     name: 'Expresso Americano',
     description: 'Expresso diluído, menos intenso que o tradicional',
+    price: 5.75,
   },
   {
     id: 5,
@@ -60,6 +64,7 @@ const api = [
     types: ['Tradicional', 'Com leite'],
     name: 'Café com Leite',
     description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    price: 21,
   },
   {
     id: 6,
@@ -69,6 +74,7 @@ const api = [
     name: 'Latte',
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+    price: 18.0,
   },
   {
     id: 7,
@@ -78,6 +84,7 @@ const api = [
     name: 'Capuccino',
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma',
+    price: 19.25,
   },
   {
     id: 8,
@@ -87,6 +94,7 @@ const api = [
     name: 'Macchiato',
     description:
       'Café expresso misturado com um pouco de leite quente e espuma',
+    price: 4.5,
   },
 ]
 
@@ -144,6 +152,7 @@ export function Home() {
             types={data.types}
             name={data.name}
             description={data.description}
+            price={data.price}
           />
         ))}
       </CartContainer>

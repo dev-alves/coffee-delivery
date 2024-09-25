@@ -1,29 +1,38 @@
 import { Bank, CreditCard, Money } from 'phosphor-react'
 import { Container } from './styles'
 import { MouseEvent } from 'react'
-import { TypeSelect } from './typeSelect'
+import { PaymentMethod } from './typeSelect'
+import { useFormContext } from 'react-hook-form'
 
 interface SelectProps {
+  registerElementName: string
   isSelect?: boolean
-  setSelectedItem: (value: TypeSelect) => void
-  type: TypeSelect
+  setSelectedItem: (value: PaymentMethod) => void
+  type: PaymentMethod
 }
 
 export function Select({
+  registerElementName,
   type,
   setSelectedItem,
   isSelect = false,
 }: SelectProps) {
+  const { register, setValue } = useFormContext()
   function handleClick(event: MouseEvent) {
+    const paymentMethodEnumValue = Object.entries(PaymentMethod).find(
+      ([, value]) => value === type,
+    )?.[0]
     event.preventDefault()
     setSelectedItem(type)
+    setValue(registerElementName, paymentMethodEnumValue)
   }
 
   const renderSelectItem = () => {
     switch (type) {
-      case TypeSelect.CREDIT_CARD: {
+      case PaymentMethod.CREDIT_CARD: {
         return (
           <Container
+            {...register(registerElementName)}
             onClick={(event: MouseEvent) => handleClick(event)}
             selected={isSelect}
           >
@@ -31,9 +40,11 @@ export function Select({
           </Container>
         )
       }
-      case TypeSelect.DEBIT_CARD: {
+
+      case PaymentMethod.DEBIT_CARD: {
         return (
           <Container
+            {...register(registerElementName)}
             onClick={(event: MouseEvent) => handleClick(event)}
             selected={isSelect}
           >
@@ -41,9 +52,10 @@ export function Select({
           </Container>
         )
       }
-      case TypeSelect.MONEY: {
+      case PaymentMethod.MONEY: {
         return (
           <Container
+            {...register(registerElementName)}
             onClick={(event: MouseEvent) => handleClick(event)}
             selected={isSelect}
           >

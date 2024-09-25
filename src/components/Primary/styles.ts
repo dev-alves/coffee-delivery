@@ -4,7 +4,6 @@ export const BaseLabelButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 8.25rem;
   height: 2.875rem;
   border-radius: 6px;
   border: none;
@@ -12,7 +11,7 @@ export const BaseLabelButton = styled.button`
   cursor: pointer;
 `
 
-export const Container = styled(BaseLabelButton)`
+export const Button = styled(BaseLabelButton)`
   size: ${(props) => props.theme['button-g-bold'].size};
   line-height: ${(props) => props.theme['button-g-bold'].lineHeight};
   color: ${(props) => props.theme['base-white']};

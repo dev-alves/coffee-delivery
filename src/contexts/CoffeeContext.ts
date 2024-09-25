@@ -7,6 +7,7 @@ export interface Coffe {
   types: string[]
   name: string
   description: string
+  price: number
   amount: number
 }
 export interface CoffeDataTypes {

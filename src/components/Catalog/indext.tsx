@@ -12,6 +12,7 @@ interface CatalogProperties {
   types: string[]
   name: string
   description: string
+  price: number
 }
 
 export function Catalog({
@@ -21,6 +22,7 @@ export function Catalog({
   types,
   name,
   description,
+  price,
 }: CatalogProperties) {
   const formatterBR = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -64,6 +66,7 @@ export function Catalog({
           types,
           name,
           description,
+          price,
           amount: Number(value),
         })
       }
@@ -89,7 +92,7 @@ export function Catalog({
         <p>{description}</p>
       </main>
       <footer>
-        <span>{formatterBR.format(9.9).replace('R$', '')}</span>
+        <span>{formatterBR.format(price).replace('R$', '')}</span>
         <ContainerInput>
           <Minus weight="bold" onClick={handleDecrement} />
           <Input
