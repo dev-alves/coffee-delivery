@@ -63,16 +63,20 @@ export const OrderAddressContainer = styled.div`
 `
 
 export const AddressInputsContainer = styled.div`
-  div:not(:last-child) {
+  div:not(:nth-last-child(-n + 3)) {
     margin-bottom: 1rem;
   }
 
-  div input:nth-child(2) {
+  /* div:not(:last-child):not(:first-child) {
+    margin: 0 0.75rem;
+  } */
+
+  div:nth-child(4) {
     margin-left: 0.75rem;
   }
 
-  div input:not(:last-child):not(:first-child) {
-    margin: 0 0.75rem;
+  div:nth-last-child(-n + 2) {
+    margin-left: 0.75rem;
   }
 `
 
@@ -87,7 +91,6 @@ export const DetailsOrderContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 448px;
-  height: 31.125rem;
   h1 {
     font-family: '${(props) => props.theme['text-title-xs'].font}', sans-serif;
     font-size: ${(props) => props.theme['text-title-xs'].size};
@@ -192,8 +195,54 @@ export const CoffeValueContainer = styled.div`
 export const FooterContainer = styled.div`
   display: flex;
   justify-content: space-between;
+`
 
-  &:first-child {
-    flex-direction: column;
+export const FooterInfoLabels = styled.div`
+  font-family: ${(props) => props.theme['text-s-regular'].font};
+  font-size: ${(props) => props.theme['text-s-regular'].size};
+  line-height: ${(props) => props.theme['text-s-regular'].lineHeight};
+  font-weight: ${(props) => props.theme['text-s-regular'].weight};
+  div:nth-child(even) {
+    margin: 12px 0;
+  }
+  div:last-of-type {
+    font-family: '${(props) => props.theme['text-l-bold'].font}', sans-serif;
+    font-size: ${(props) => props.theme['text-l-bold'].size};
+    font-weight: ${(props) => props.theme['text-l-bold'].weight};
+    color: ${(props) => props.theme['base-text']};
+  }
+`
+
+export const FooterInfoValues = styled.div`
+  text-align: right;
+  font-family: ${(props) => props.theme['text-m-regular'].font};
+  font-size: ${(props) => props.theme['text-m-regular'].size};
+  line-height: ${(props) => props.theme['text-m-regular'].lineHeight};
+  font-weight: ${(props) => props.theme['text-m-regular'].weight};
+
+  div:nth-child(even) {
+    margin: 12px 0;
+  }
+
+  div:not(last-of-type):before {
+    content: 'R$';
+    color: ${(props) => props.theme['base-text']};
+  }
+
+  div:last-of-type {
+    &::before {
+      content: 'R$';
+    }
+    font-family: '${(props) => props.theme['text-l-bold'].font}', sans-serif;
+    font-size: ${(props) => props.theme['text-l-bold'].size};
+    font-weight: ${(props) => props.theme['text-l-bold'].weight};
+    color: ${(props) => props.theme['base-text']};
+  }
+`
+
+export const FooterButtonSubmitContainer = styled.div`
+  padding-top: 24px;
+  button {
+    width: 100%;
   }
 `

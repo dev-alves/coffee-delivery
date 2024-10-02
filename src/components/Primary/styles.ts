@@ -4,6 +4,7 @@ export const BaseLabelButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 12px 8px;
   height: 2.875rem;
   border-radius: 6px;
   border: none;

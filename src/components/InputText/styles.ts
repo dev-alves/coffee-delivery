@@ -25,3 +25,15 @@ const BaseInputText = styled.input`
 `
 
 export const Input = styled(BaseInputText)``
+
+export const Container = styled.div`
+  display: inline-block;
+  position: relative;
+  span {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: ${(props) => props.theme['text-s-regular'].font};
+    color: ${(props) => props.theme['base-label']};
+  }
+`

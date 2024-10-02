@@ -16,6 +16,9 @@ import {
   CoffePlusAndMinusContainer,
   CoffeValueContainer,
   FooterContainer,
+  FooterInfoValues,
+  FooterButtonSubmitContainer,
+  FooterInfoLabels,
 } from './styles'
 import { InputText } from '../../components/InputText'
 import { useContext, useState } from 'react'
@@ -57,51 +60,55 @@ export function Cart() {
                 </div>
               </header>
               <AddressInputsContainer>
-                <div>
-                  <InputText
-                    name="CEP"
-                    id="cepId"
-                    isRequired={true}
-                    size={200}
-                  />
-                </div>
-                <div>
-                  <InputText
-                    name="Rua"
-                    id="ruaId"
-                    isRequired={true}
-                    size={560}
-                  />
-                </div>
-                <div>
-                  <InputText
-                    name="Número"
-                    id="numId"
-                    isRequired={true}
-                    size={200}
-                  />
-                  <InputText
-                    name="Complemento"
-                    id="complementoId"
-                    isRequired={false}
-                    size={348}
-                  />
-                </div>
-                <div>
-                  <InputText
-                    name="Bairro"
-                    id="bairroId"
-                    isRequired={true}
-                    size={200}
-                  />
-                  <InputText
-                    name="Cidade"
-                    id="cityId"
-                    isRequired={true}
-                    size={276}
-                  />
-                  <InputText name="UF" id="ufId" isRequired={true} size={60} />
-                </div>
+                <InputText
+                  text="CEP"
+                  name="cep"
+                  id="cepId"
+                  isRequired={true}
+                  size={200}
+                />
+                <InputText
+                  text="Rua"
+                  name="rua"
+                  id="ruaId"
+                  isRequired={true}
+                  size={560}
+                />
+                <InputText
+                  text="Número"
+                  name="numero"
+                  id="numId"
+                  isRequired={true}
+                  size={200}
+                />
+                <InputText
+                  text="Complemento"
+                  name="complemento"
+                  id="complementoId"
+                  isRequired={false}
+                  size={348}
+                />
+                <InputText
+                  text="Bairro"
+                  name="bairro"
+                  id="bairroId"
+                  isRequired={true}
+                  size={200}
+                />
+                <InputText
+                  text="Cidade"
+                  name="cidade"
+                  id="cityId"
+                  isRequired={true}
+                  size={276}
+                />
+                <InputText
+                  text="UF"
+                  name="uf"
+                  id="ufId"
+                  isRequired={true}
+                  size={60}
+                />
               </AddressInputsContainer>
             </FormInfoAddressContainer>
             <FormInfoPaymentContainer>
@@ -172,7 +179,7 @@ export function Cart() {
                 </CoffesContainer>
               ))}
               <FooterContainer>
-                <div>
+                <FooterInfoLabels>
                   <div>
                     <span>Total de itens</span>
                   </div>
@@ -182,23 +189,38 @@ export function Cart() {
                   <div>
                     <span>Total</span>
                   </div>
-                </div>
-                <div>
+                </FooterInfoLabels>
+                <FooterInfoValues>
                   <div>
-                    <span>{coffes.length}</span>
+                    <span>
+                      {formatterBR
+                        .format(
+                          coffes.reduce((accumul, current) => {
+                            return accumul + current.price * current.amount
+                          }, 0),
+                        )
+                        .replace('R$', '')}
+                    </span>
                   </div>
                   <div>
-                    <span>54.70</span>
+                    <span>{formatterBR.format(47.5).replace('R$', '')}</span>
                   </div>
                   <div>
                     <span>
-                      {coffes.reduce((accumul, current) => {
-                        return accumul + current.price * current.amount
-                      }, 0)}
+                      {formatterBR
+                        .format(
+                          coffes.reduce((accumul, current) => {
+                            return accumul + current.price * current.amount
+                          }, 0) + 47.5,
+                        )
+                        .replace('R$', '')}
                     </span>
                   </div>
-                </div>
+                </FooterInfoValues>
               </FooterContainer>
+              <FooterButtonSubmitContainer>
+                <ButtonPrimary text="Confirmar pedido" />
+              </FooterButtonSubmitContainer>
             </FormInfoDetailsOrder>
           </DetailsOrderContainer>
         </FormContainer>

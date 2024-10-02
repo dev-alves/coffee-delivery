@@ -55,6 +55,7 @@ export function Catalog({
     }
   }
 
+  // TODO: Verificar se o elemento existe na lista e, se existir, incrementar o amount
   function handleAddNewItemOnCart() {
     if (inputRef.current) {
       const { value } = inputRef.current
