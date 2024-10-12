@@ -21,8 +21,8 @@ import {
   FooterInfoLabels,
 } from './styles'
 import { InputText } from '../../components/InputText'
-import { useContext, useState } from 'react'
-import { CoffeContext } from '../../contexts/CoffeeContext'
+import { MouseEvent, useContext, useState } from 'react'
+import { Coffe, CoffeContext } from '../../contexts/CoffeeContext'
 import { PaymentMethod } from '../../components/Select/typeSelect'
 import { ButtonRemove } from '../../components/Remove'
 import { Input } from '../../components/Catalog/styles'
@@ -33,7 +33,7 @@ import { ButtonPrimary } from '../../components/Primary'
 export interface ICartForm {}
 
 export function Cart() {
-  const { coffes } = useContext(CoffeContext)
+  const { coffes, setNewCoffe } = useContext(CoffeContext)
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>()
   const methods = useForm()
@@ -42,6 +42,29 @@ export function Cart() {
     style: 'currency',
     currency: 'BRL',
   })
+
+  function handleSubmitForm(event: MouseEvent<HTMLButtonElement>) {
+    event?.preventDefault()
+    console.log('methods.getValues()', methods.getValues())
+  }
+
+  function handleDecrementCoffeAmount(coffe: Coffe) {
+    const updatedCoffe = {
+      ...coffe,
+      amount: coffe.amount - 1,
+    }
+    if (coffe.amount > 0) {
+      setNewCoffe(updatedCoffe)
+    }
+  }
+
+  function handleIncrementCoffeAmount(coffe: Coffe) {
+    const updatedCoffe = {
+      ...coffe,
+      amount: coffe.amount + 1,
+    }
+    setNewCoffe(updatedCoffe)
+  }
 
   return (
     <Container>
@@ -154,13 +177,19 @@ export function Cart() {
                           <span>{coffe.name}</span>
                           <CoffesInputsContainer>
                             <CoffePlusAndMinusContainer>
-                              <Minus weight="bold" />
-                              <Input
-                                {...methods.register('amountCoffe', {
-                                  value: coffe.amount,
-                                })}
+                              <Minus
+                                weight="bold"
+                                onClick={() =>
+                                  handleDecrementCoffeAmount(coffe)
+                                }
                               />
-                              <Plus weight="bold" />
+                              <Input readOnly value={coffe.amount} />
+                              <Plus
+                                weight="bold"
+                                onClick={() =>
+                                  handleIncrementCoffeAmount(coffe)
+                                }
+                              />
                             </CoffePlusAndMinusContainer>
                             <ButtonRemove text="Remover" />
                           </CoffesInputsContainer>
@@ -219,7 +248,10 @@ export function Cart() {
                 </FooterInfoValues>
               </FooterContainer>
               <FooterButtonSubmitContainer>
-                <ButtonPrimary text="Confirmar pedido" />
+                <ButtonPrimary
+                  text="Confirmar pedido"
+                  handleSubmit={handleSubmitForm}
+                />
               </FooterButtonSubmitContainer>
             </FormInfoDetailsOrder>
           </DetailsOrderContainer>

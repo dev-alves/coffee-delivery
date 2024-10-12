@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from 'react'
 import { Container, Input } from './styles'
+import { useFormContext } from 'react-hook-form'
 
 interface InputTextProps {
   text: string
@@ -16,6 +17,7 @@ export function InputText({
   isRequired = false,
   size,
 }: InputTextProps) {
+  const { register } = useFormContext()
   const placeholder = !isRequired ? 'Opcional' : ''
   const [canShowText, setCanShowText] = useState(true)
 
@@ -30,6 +32,7 @@ export function InputText({
   return (
     <Container>
       <Input
+        {...register(name)}
         onChange={handleOnChange}
         name={name}
         placeholder={placeholder}

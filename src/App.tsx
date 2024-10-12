@@ -10,7 +10,14 @@ function App() {
   const [coffes, setCoffe] = useState<Coffe[]>([])
 
   function setNewCoffe(coffe: Coffe) {
-    setCoffe([...coffes, coffe])
+    const coffeContext = coffes.filter((c) => c.id === coffe.id)[0]
+    const coffeIndexContext = coffes.findIndex((c) => c === coffeContext)
+    if (coffeContext) {
+      coffes[coffeIndexContext] = coffe
+      setCoffe([...coffes])
+    } else {
+      setCoffe([...coffes, coffe])
+    }
   }
 
   return (
