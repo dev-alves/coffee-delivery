@@ -31,26 +31,49 @@ export function Catalog({
 
   const { register, setValue, getValues } = useForm()
   const inputRef = useRef<HTMLInputElement>()
-  const { setNewCoffe } = useContext(CoffeContext)
+  const { coffes, setNewCoffe, deleteItem } = useContext(CoffeContext)
   const inputNumberId = 'inputNumber#' + id
   const inputRegistered = register(inputNumberId)
 
   useEffect(() => {
-    setValue(inputNumberId, 0)
-  }, [inputNumberId, setValue])
+    const coffeExists = coffes.filter((coffe) => coffe.id === id)
+    setValue(
+      inputNumberId,
+      coffeExists.length > 0
+        ? coffes.filter((coffe) => coffe.id === id)[0]?.amount
+        : 0,
+    )
+  }, [inputNumberId, coffes, id, setValue])
 
-  function handleIncrement() {
+  function handleIncrement(coffeId: number) {
     if (inputRef.current) {
       const { id, value } = inputRef.current
-      setValue(id, Number(value) >= 0 ? Number(value) + 1 : 0)
+      const coffe = coffes.filter((c) => c.id === coffeId)[0]
+      if (coffe) {
+        coffe.amount++
+        setNewCoffe(coffe)
+      } else {
+        setValue(id, Number(value) >= 0 ? Number(value) + 1 : 0)
+      }
     }
   }
 
-  function handleDecrement() {
+  function handleDecrement(coffeId: number) {
     if (inputRef.current) {
       const value = getValues(inputRef.current.id)
       if (value > 0) {
-        setValue(inputRef.current.id, value - 1)
+        const { id, value } = inputRef.current
+        const coffe = coffes.filter((c) => c.id === coffeId)[0]
+        if (coffe) {
+          if (coffe.amount === 1) {
+            deleteItem(coffe)
+          } else {
+            coffe.amount--
+            setNewCoffe(coffe)
+          }
+        } else {
+          setValue(id, Number(value) >= 0 ? Number(value) - 1 : 0)
+        }
       }
     }
   }
@@ -95,7 +118,7 @@ export function Catalog({
       <footer>
         <span>{formatterBR.format(price).replace('R$', '')}</span>
         <ContainerInput>
-          <Minus weight="bold" onClick={handleDecrement} />
+          <Minus weight="bold" onClick={() => handleDecrement(id)} />
           <Input
             id={inputNumberId}
             {...inputRegistered}
@@ -107,7 +130,7 @@ export function Catalog({
               }
             }}
           />
-          <Plus weight="bold" onClick={handleIncrement} />
+          <Plus weight="bold" onClick={() => handleIncrement(id)} />
         </ContainerInput>
         <Button>
           <ShoppingCartSimple size={22} onClick={handleAddNewItemOnCart} />

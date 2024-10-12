@@ -15,7 +15,9 @@ export function Header() {
 
   return (
     <Container>
-      <img src={CoffeDeliveryLogo} alt="" />
+      <NavLink to="/" title="home">
+        <img src={CoffeDeliveryLogo} alt="" />
+      </NavLink>
       <nav>
         <NavLink to="/" title="localização atual">
           <MapPin size={22} /> <span>Manaus, Amazonas</span>

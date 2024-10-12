@@ -33,7 +33,7 @@ import { ButtonPrimary } from '../../components/Primary'
 export interface ICartForm {}
 
 export function Cart() {
-  const { coffes, setNewCoffe } = useContext(CoffeContext)
+  const { coffes, setNewCoffe, deleteItem } = useContext(CoffeContext)
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>()
   const methods = useForm()
@@ -56,6 +56,10 @@ export function Cart() {
     if (coffe.amount > 0) {
       setNewCoffe(updatedCoffe)
     }
+
+    if (updatedCoffe.amount === 0) {
+      deleteItem(coffe)
+    }
   }
 
   function handleIncrementCoffeAmount(coffe: Coffe) {
@@ -64,6 +68,14 @@ export function Cart() {
       amount: coffe.amount + 1,
     }
     setNewCoffe(updatedCoffe)
+  }
+
+  function handleButtonRemoveCoffe(
+    coffe: Coffe,
+    event: MouseEvent<HTMLButtonElement>,
+  ) {
+    event.preventDefault()
+    deleteItem(coffe)
   }
 
   return (
@@ -191,7 +203,12 @@ export function Cart() {
                                 }
                               />
                             </CoffePlusAndMinusContainer>
-                            <ButtonRemove text="Remover" />
+                            <ButtonRemove
+                              text="Remover"
+                              handleClick={(
+                                event: MouseEvent<HTMLButtonElement>,
+                              ) => handleButtonRemoveCoffe(coffe, event)}
+                            />
                           </CoffesInputsContainer>
                         </div>
                       </CoffeAmountDetailsContainer>
