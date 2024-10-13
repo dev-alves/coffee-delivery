@@ -1,10 +1,9 @@
-import { MouseEvent } from 'react'
 import { Button } from './styles'
 
 interface ButtonPrimaryProps {
   text: string
   upperCase?: boolean
-  handleSubmit: (event: MouseEvent<HTMLButtonElement>) => void
+  handleSubmit: () => void
 }
 
 export function ButtonPrimary({

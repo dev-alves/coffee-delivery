@@ -37,13 +37,14 @@ export function Catalog({
 
   useEffect(() => {
     const coffeExists = coffes.filter((coffe) => coffe.id === id)
+    const valuesInField = getValues(inputNumberId)
     setValue(
       inputNumberId,
       coffeExists.length > 0
         ? coffes.filter((coffe) => coffe.id === id)[0]?.amount
-        : 0,
+        : valuesInField || 0,
     )
-  }, [inputNumberId, coffes, id, setValue])
+  }, [inputNumberId, coffes, id, setValue, getValues])
 
   function handleIncrement(coffeId: number) {
     if (inputRef.current) {

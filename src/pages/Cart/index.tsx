@@ -29,23 +29,42 @@ import { Input } from '../../components/Catalog/styles'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Select } from '../../components/Select'
 import { ButtonPrimary } from '../../components/Primary'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 
-export interface ICartForm {}
+const formValitionSchema = zod.object({
+  cep: zod.string().min(8, 'O cep está inválido'),
+  numero: zod.number().positive('O número deve ser maior que zero'),
+  rua: zod.string(),
+  cidade: zod.string(),
+  uf: zod.string(),
+  paymentMethod: zod.string().min(1, 'Required'),
+  bairro: zod.string(),
+  complemento: zod.string().optional(),
+})
+
+type FormData = zod.infer<typeof formValitionSchema>
 
 export function Cart() {
   const { coffes, setNewCoffe, deleteItem } = useContext(CoffeContext)
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>()
-  const methods = useForm()
+  const methods = useForm<FormData>({
+    resolver: zodResolver(formValitionSchema),
+  })
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods
 
   const formatterBR = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   })
 
-  function handleSubmitForm(event: MouseEvent<HTMLButtonElement>) {
+  function handleSubmitForm(data: FormData) {
     event?.preventDefault()
-    console.log('methods.getValues()', methods.getValues())
+    console.log(data)
   }
 
   function handleDecrementCoffeAmount(coffe: Coffe) {
@@ -95,25 +114,13 @@ export function Cart() {
                 </div>
               </header>
               <AddressInputsContainer>
-                <InputText
-                  text="CEP"
-                  name="cep"
-                  id="cepId"
-                  isRequired={true}
-                  size={200}
-                />
-                <InputText
-                  text="Rua"
-                  name="rua"
-                  id="ruaId"
-                  isRequired={true}
-                  size={560}
-                />
+                <InputText text="CEP" name="cep" id="cepId" size={200} />
+                <InputText text="Rua" name="rua" id="ruaId" size={560} />
                 <InputText
                   text="Número"
+                  type="number"
                   name="numero"
                   id="numId"
-                  isRequired={true}
                   size={200}
                 />
                 <InputText
@@ -127,23 +134,10 @@ export function Cart() {
                   text="Bairro"
                   name="bairro"
                   id="bairroId"
-                  isRequired={true}
                   size={200}
                 />
-                <InputText
-                  text="Cidade"
-                  name="cidade"
-                  id="cityId"
-                  isRequired={true}
-                  size={276}
-                />
-                <InputText
-                  text="UF"
-                  name="uf"
-                  id="ufId"
-                  isRequired={true}
-                  size={60}
-                />
+                <InputText text="Cidade" name="cidade" id="cityId" size={276} />
+                <InputText text="UF" name="uf" id="ufId" size={60} />
               </AddressInputsContainer>
             </FormInfoAddressContainer>
             <FormInfoPaymentContainer>
@@ -168,6 +162,7 @@ export function Cart() {
                       type={payment}
                       setSelectedItem={setSelectedPaymentMethod}
                       isSelect={selectedPaymentMethod === payment}
+                      errorMessage={errors.paymentMethod?.message}
                     />
                   )
                 })}
@@ -267,7 +262,7 @@ export function Cart() {
               <FooterButtonSubmitContainer>
                 <ButtonPrimary
                   text="Confirmar pedido"
-                  handleSubmit={handleSubmitForm}
+                  handleSubmit={handleSubmit(handleSubmitForm)}
                 />
               </FooterButtonSubmitContainer>
             </FormInfoDetailsOrder>

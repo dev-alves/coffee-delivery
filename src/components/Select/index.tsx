@@ -9,15 +9,19 @@ interface SelectProps {
   isSelect?: boolean
   setSelectedItem: (value: PaymentMethod) => void
   type: PaymentMethod
+  isRequired?: boolean
+  errorMessage?: string
 }
 
 export function Select({
+  isRequired = true,
   registerElementName,
   type,
   setSelectedItem,
   isSelect = false,
+  errorMessage,
 }: SelectProps) {
-  const { register, setValue } = useFormContext()
+  const { register, clearErrors, setValue } = useFormContext()
   function handleClick(event: MouseEvent) {
     const paymentMethodEnumValue = Object.entries(PaymentMethod).find(
       ([, value]) => value === type,
@@ -25,6 +29,7 @@ export function Select({
     event.preventDefault()
     setSelectedItem(type)
     setValue(registerElementName, paymentMethodEnumValue)
+    clearErrors(registerElementName)
   }
 
   const renderSelectItem = () => {
@@ -32,7 +37,12 @@ export function Select({
       case PaymentMethod.CREDIT_CARD: {
         return (
           <Container
-            {...register(registerElementName)}
+            $haserror={
+              errorMessage && typeof errorMessage !== 'undefined'
+                ? 'true'
+                : 'false'
+            }
+            {...register(registerElementName, { required: isRequired })}
             onClick={(event: MouseEvent) => handleClick(event)}
             selected={isSelect}
           >
@@ -44,6 +54,11 @@ export function Select({
       case PaymentMethod.DEBIT_CARD: {
         return (
           <Container
+            $haserror={
+              errorMessage && typeof errorMessage !== 'undefined'
+                ? 'true'
+                : 'false'
+            }
             {...register(registerElementName)}
             onClick={(event: MouseEvent) => handleClick(event)}
             selected={isSelect}
@@ -55,6 +70,11 @@ export function Select({
       case PaymentMethod.MONEY: {
         return (
           <Container
+            $haserror={
+              errorMessage && typeof errorMessage !== 'undefined'
+                ? 'true'
+                : 'false'
+            }
             {...register(registerElementName)}
             onClick={(event: MouseEvent) => handleClick(event)}
             selected={isSelect}

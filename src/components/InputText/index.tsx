@@ -7,17 +7,20 @@ interface InputTextProps {
   name: string
   id: string
   size: number
-  isRequired: boolean
+  isRequired?: boolean
+  type?: string
 }
 
 export function InputText({
   text,
   name,
   id,
-  isRequired = false,
+  isRequired = true,
   size,
+  type = 'text',
 }: InputTextProps) {
   const { register } = useFormContext()
+  const field = register(name, { valueAsNumber: type === 'number' })
   const placeholder = !isRequired ? 'Opcional' : ''
   const [canShowText, setCanShowText] = useState(true)
 
@@ -32,13 +35,14 @@ export function InputText({
   return (
     <Container>
       <Input
-        {...register(name)}
+        {...field}
         onChange={handleOnChange}
         name={name}
         placeholder={placeholder}
         id={id}
         maxLength={50}
         size={size}
+        type={type}
       />
       {canShowText && <span>{text}</span>}
     </Container>
