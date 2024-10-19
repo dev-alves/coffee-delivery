@@ -24,10 +24,16 @@ function App() {
     setCoffe(coffes.filter((c) => c.id !== coffe.id))
   }
 
+  function resetState() {
+    setCoffe([])
+  }
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
-        <CoffeContext.Provider value={{ coffes, setNewCoffe, deleteItem }}>
+        <CoffeContext.Provider
+          value={{ coffes, setNewCoffe, deleteItem, resetState }}
+        >
           <Router />
         </CoffeContext.Provider>
       </BrowserRouter>

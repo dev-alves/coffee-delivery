@@ -1,5 +1,5 @@
 export enum PaymentMethod {
-  DEBIT_CARD = 'CARTÃO DE DÉBITO',
-  CREDIT_CARD = 'CARTÃO DE CRÉDITO',
-  MONEY = 'DINHEIRO',
+  DEBIT_CARD = 'Cartão de débito',
+  CREDIT_CARD = 'Cartão de crédito',
+  MONEY = 'Dinheiro',
 }

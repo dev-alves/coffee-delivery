@@ -148,6 +148,42 @@ export const CoffeContainer = styled(SectionItemsBase)`
   align-items: center;
 `
 
+export const MapPinContainer = styled(SectionItemsBase)`
+  display: flex;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1000px;
+    background: ${(props) => props.theme.purple};
+    margin-right: 0.75rem;
+    svg {
+      color: ${(props) => props.theme.background};
+    }
+  }
+  align-items: center;
+`
+
+export const CurrencyDollarSimpleContainer = styled(SectionItemsBase)`
+  display: flex;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1000px;
+    background: ${(props) => props.theme['yellow-dark']};
+    margin-right: 0.75rem;
+    svg {
+      color: ${(props) => props.theme.background};
+    }
+  }
+  align-items: center;
+`
+
 export const CartContainer = styled.section`
   display: grid;
   grid-template-columns: repeat(4, 1fr);

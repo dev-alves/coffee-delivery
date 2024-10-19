@@ -31,6 +31,8 @@ import { Select } from '../../components/Select'
 import { ButtonPrimary } from '../../components/Primary'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { useNavigate } from 'react-router-dom'
+import { PaymentMethodUtils } from '../../utils/PaymentMethodUtils'
 
 const formValitionSchema = zod.object({
   cep: zod.string().min(8, 'O cep está inválido'),
@@ -46,7 +48,8 @@ const formValitionSchema = zod.object({
 type FormData = zod.infer<typeof formValitionSchema>
 
 export function Cart() {
-  const { coffes, setNewCoffe, deleteItem } = useContext(CoffeContext)
+  const { coffes, setNewCoffe, deleteItem, resetState } =
+    useContext(CoffeContext)
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
     useState<PaymentMethod>()
   const methods = useForm<FormData>({
@@ -59,6 +62,8 @@ export function Cart() {
 
   const isValidToSubmitForm = isValid && coffes.length > 0
 
+  const navigate = useNavigate()
+
   const formatterBR = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -66,7 +71,18 @@ export function Cart() {
 
   function handleSubmitForm(data: FormData) {
     event?.preventDefault()
-    console.log(data)
+    resetState()
+    navigate('/cart/checkout', {
+      state: {
+        paymentMethod: PaymentMethodUtils.getValueFromEnum(data.paymentMethod),
+        numero: data.numero,
+        rua: data.rua,
+        uf: data.uf,
+        estado: data.cidade,
+        bairro: data.bairro,
+        cidade: data.cidade,
+      },
+    })
   }
 
   function handleDecrementCoffeAmount(coffe: Coffe) {

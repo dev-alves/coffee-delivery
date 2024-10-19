@@ -14,6 +14,7 @@ export interface CoffeDataTypes {
   coffes: Coffe[]
   setNewCoffe: (coffe: Coffe) => void
   deleteItem: (coffe: Coffe) => void
+  resetState: () => void
 }
 
 export const CoffeContext = createContext({} as CoffeDataTypes)
