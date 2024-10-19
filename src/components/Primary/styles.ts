@@ -17,10 +17,12 @@ export const Button = styled(BaseLabelButton)`
   line-height: ${(props) => props.theme['button-g-bold'].lineHeight};
   color: ${(props) => props.theme['base-white']};
   font-weight: ${(props) => props.theme['button-g-bold'].weight};
-  background: ${(props) => props.theme.yellow};
+  background: ${(props) =>
+    props.disabled ? props.theme['base-label'] : props.theme.yellow};
   transition: 0.3s;
 
   &:hover {
-    background: ${(props) => props.theme['yellow-dark']};
+    background: ${(props) =>
+      props.disabled ? props.theme['base-label'] : props.theme['yellow-dark']};
   }
 `

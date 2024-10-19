@@ -54,8 +54,10 @@ export function Cart() {
   })
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = methods
+
+  const isValidToSubmitForm = isValid && coffes.length > 0
 
   const formatterBR = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -261,6 +263,7 @@ export function Cart() {
               </FooterContainer>
               <FooterButtonSubmitContainer>
                 <ButtonPrimary
+                  disabled={!isValidToSubmitForm}
                   text="Confirmar pedido"
                   handleSubmit={handleSubmit(handleSubmitForm)}
                 />
