@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, MouseEvent, useRef, useState } from 'react'
 import { Container, Input } from './styles'
 import { useFormContext } from 'react-hook-form'
 
@@ -6,7 +6,7 @@ interface InputTextProps {
   text: string
   name: string
   id: string
-  size: number
+  size?: number
   isRequired?: boolean
   type?: string
 }
@@ -23,6 +23,7 @@ export function InputText({
   const field = register(name, { valueAsNumber: type === 'number' })
   const placeholder = !isRequired ? 'Opcional' : ''
   const [canShowText, setCanShowText] = useState(true)
+  const inputRef = useRef<HTMLInputElement>()
 
   function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
     if (event.currentTarget.value !== '') {
@@ -32,8 +33,16 @@ export function InputText({
     }
   }
 
+  function handleClick(event: MouseEvent) {
+    if (
+      event.target instanceof HTMLSpanElement ||
+      event.target instanceof HTMLInputElement
+    )
+      inputRef?.current?.focus()
+  }
+
   return (
-    <Container>
+    <Container size={size} onClick={handleClick}>
       <Input
         {...field}
         onChange={handleOnChange}
@@ -43,6 +52,12 @@ export function InputText({
         maxLength={50}
         size={size}
         type={type}
+        ref={(e) => {
+          field.ref(e)
+          if (e) {
+            inputRef.current = e
+          }
+        }}
       />
       {canShowText && <span>{text}</span>}
     </Container>

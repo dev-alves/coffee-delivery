@@ -1,7 +1,17 @@
 import styled from 'styled-components'
 
+interface InputTextProps {
+  size?: number
+}
+
 const BaseInputText = styled.input`
-  width: ${(props) => Number(props.size) / 16}rem;
+  ${(props) =>
+    props.size
+      ? `
+    width: ${Number(props.size) / 16}rem
+  `
+      : `width: 100%`};
+  flex-basis: 9rem;
   height: 2.625rem;
   padding: 0.75rem;
   border: none;
@@ -26,8 +36,13 @@ const BaseInputText = styled.input`
 
 export const Input = styled(BaseInputText)``
 
-export const Container = styled.div`
-  display: inline-block;
+export const Container = styled.div<InputTextProps>`
+  ${(props) =>
+    props.size
+      ? `
+    width:  ${Number(props.size) / 16}rem
+  `
+      : `width: 100%`};
   position: relative;
   span {
     position: absolute;

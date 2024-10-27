@@ -9,7 +9,7 @@ export const BaseSelect = styled.button<StyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 11.166rem;
+  width: 100%;
   height: 3.1875rem;
   cursor: pointer;
   border: ${(props) =>
