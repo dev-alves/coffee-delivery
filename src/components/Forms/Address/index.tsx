@@ -15,7 +15,14 @@ export function AddressForm() {
         </div>
       </header>
       <AddressInputsContainer>
-        <InputText text="CEP" name="cep" id="cepId" size={200} /> 
+        <InputText
+          text="CEP"
+          name="cep"
+          id="cepId"
+          size={200}
+          max={9}
+          mask="cep"
+        />
         <InputText text="Rua" name="rua" id="ruaId" />
         <InputText
           text="Número"
@@ -33,7 +40,7 @@ export function AddressForm() {
         />
         <InputText text="Bairro" name="bairro" id="bairroId" size={200} />
         <InputText text="Cidade" name="cidade" id="cityId" size={276} />
-        <InputText text="UF" name="uf" id="ufId" size={60} />
+        <InputText text="UF" name="uf" id="ufId" size={60} max={2} />
       </AddressInputsContainer>
     </Container>
   )

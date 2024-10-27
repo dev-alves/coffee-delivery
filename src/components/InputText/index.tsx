@@ -1,6 +1,7 @@
 import { ChangeEvent, MouseEvent, useRef, useState } from 'react'
 import { Container, Input } from './styles'
 import { useFormContext } from 'react-hook-form'
+import { MaskUtils } from '../../utils/MaskUtils'
 
 interface InputTextProps {
   text: string
@@ -9,6 +10,8 @@ interface InputTextProps {
   size?: number
   isRequired?: boolean
   type?: string
+  max?: number
+  mask?: string
 }
 
 export function InputText({
@@ -17,7 +20,9 @@ export function InputText({
   id,
   isRequired = true,
   size,
+  max,
   type = 'text',
+  mask,
 }: InputTextProps) {
   const { register } = useFormContext()
   const field = register(name, { valueAsNumber: type === 'number' })
@@ -27,6 +32,19 @@ export function InputText({
 
   function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
     if (event.currentTarget.value !== '') {
+      if (type === 'number') {
+        event.currentTarget.value = event.currentTarget.value.replace(
+          /(\D)/g,
+          '',
+        )
+      }
+
+      if (mask) {
+        event.currentTarget.value = MaskUtils.applyMask(
+          mask,
+          event.currentTarget.value,
+        )
+      }
       setCanShowText(false)
     } else {
       setCanShowText(true)
@@ -49,7 +67,7 @@ export function InputText({
         name={name}
         placeholder={placeholder}
         id={id}
-        maxLength={50}
+        maxLength={max}
         size={size}
         type={type}
         ref={(e) => {
